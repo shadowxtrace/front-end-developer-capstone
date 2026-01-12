@@ -1,10 +1,11 @@
-function BookingPage() {
+import BookingForm from "./BookingForm";
+
+export default function BookingPage() {
   return (
     <section>
       <h1>Reservations</h1>
-      <p>Booking form goes here.</p>
+      <BookingForm />
     </section>
   );
 }
 
-export default BookingPage;
