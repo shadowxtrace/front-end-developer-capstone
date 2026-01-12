@@ -1,28 +1,51 @@
-/* Base */
-* { box-sizing: border-box; }
-body { margin: 0; }
-img { max-width: 100%; height: auto; display: block; }
+/* =========================
+   Base / Reset
+========================= */
+* {
+  box-sizing: border-box;
+}
 
-/* Page layout */
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+/* =========================
+   Page Layout
+========================= */
 .app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-header, nav, main, footer {
+header,
+nav,
+main,
+footer {
   width: 100%;
   padding: 16px;
 }
 
-/* Header */
+/* =========================
+   Header
+========================= */
 .header {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Nav */
+/* =========================
+   Navigation
+========================= */
 .nav ul {
   list-style: none;
   margin: 0;
@@ -33,9 +56,18 @@ header, nav, main, footer {
   flex-wrap: wrap;
 }
 
-.nav a { text-decoration: none; }
+.nav li {
+  margin: 0;
+}
 
-/* Main */
+.nav a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* =========================
+   Main Content
+========================= */
 .main {
   flex: 1;
   display: flex;
@@ -47,13 +79,46 @@ header, nav, main, footer {
   max-width: 960px;
 }
 
-/* Footer */
+/* =========================
+   Typography
+========================= */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+p {
+  line-height: 1.5;
+}
+
+span {
+  font-size: 0.9rem;
+}
+
+/* =========================
+   Footer
+========================= */
 .footer {
   text-align: center;
 }
 
-/* Mobile tweak */
+/* =========================
+   Responsive
+========================= */
 @media (max-width: 600px) {
-  header, nav, main, footer { padding: 12px; }
-  .nav ul { gap: 10px; }
+  header,
+  nav,
+  main,
+  footer {
+    padding: 12px;
+  }
+
+  .nav ul {
+    gap: 10px;
+  }
 }
