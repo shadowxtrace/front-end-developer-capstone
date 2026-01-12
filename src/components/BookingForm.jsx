@@ -6,19 +6,22 @@ export default function BookingForm({ availableTimes, dispatch }) {
   const [guests, setGuests] = useState(1);
   const [occasion, setOccasion] = useState("Birthday");
 
-  function handleDateChange(e) {
+  const handleDateChange = (e) => {
     const selectedDate = e.target.value;
     setDate(selectedDate);
-    dispatch({ type: "date_changed", payload: selectedDate });
-  }
+    dispatch(selectedDate); // Step 4: dispatch when date changes
+  };
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log({ date, time, guests, occasion });
-  }
+  };
 
   return (
-    <form onSubmit={handleSubmit} style={{ display: "grid", maxWidth: 200, gap: 20 }}>
+    <form
+      onSubmit={handleSubmit}
+      style={{ display: "grid", maxWidth: 200, gap: 20 }}
+    >
       <label htmlFor="res-date">Choose date</label>
       <input
         type="date"
