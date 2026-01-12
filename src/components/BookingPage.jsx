@@ -1,11 +1,12 @@
 import BookingForm from "./BookingForm";
 
-export default function BookingPage() {
+export default function BookingPage({ availableTimes, dispatch }) {
   return (
     <section>
       <h1>Reservations</h1>
-      <BookingForm />
+      <BookingForm availableTimes={availableTimes} dispatch={dispatch} />
     </section>
   );
 }
+
 
