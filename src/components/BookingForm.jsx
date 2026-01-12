@@ -1,41 +1,29 @@
 import { useState } from "react";
 
-export default function BookingForm({ availableTimes, dispatch }) {
+export default function BookingForm({ availableTimes, dispatch, submitForm }) {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("17:00");
   const [guests, setGuests] = useState(1);
   const [occasion, setOccasion] = useState("Birthday");
 
-  const handleDateChange = (e) => {
+  function handleDateChange(e) {
     const selectedDate = e.target.value;
     setDate(selectedDate);
-    dispatch(selectedDate); // Step 4: dispatch when date changes
-  };
+    dispatch({ type: "date_changed", payload: selectedDate });
+  }
 
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
-    console.log({ date, time, guests, occasion });
-  };
+    submitForm({ date, time, guests, occasion });
+  }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{ display: "grid", maxWidth: 200, gap: 20 }}
-    >
+    <form onSubmit={handleSubmit} style={{ display: "grid", maxWidth: 200, gap: 20 }}>
       <label htmlFor="res-date">Choose date</label>
-      <input
-        type="date"
-        id="res-date"
-        value={date}
-        onChange={handleDateChange}
-      />
+      <input type="date" id="res-date" value={date} onChange={handleDateChange} />
 
       <label htmlFor="res-time">Choose time</label>
-      <select
-        id="res-time"
-        value={time}
-        onChange={(e) => setTime(e.target.value)}
-      >
+      <select id="res-time" value={time} onChange={(e) => setTime(e.target.value)}>
         {availableTimes.map((t) => (
           <option key={t}>{t}</option>
         ))}
@@ -52,11 +40,7 @@ export default function BookingForm({ availableTimes, dispatch }) {
       />
 
       <label htmlFor="occasion">Occasion</label>
-      <select
-        id="occasion"
-        value={occasion}
-        onChange={(e) => setOccasion(e.target.value)}
-      >
+      <select id="occasion" value={occasion} onChange={(e) => setOccasion(e.target.value)}>
         <option>Birthday</option>
         <option>Engagement</option>
         <option>Anniversary</option>
