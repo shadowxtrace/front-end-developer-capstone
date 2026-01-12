@@ -1,10 +1,6 @@
 import { useMemo, useState } from "react";
 
-export default function BookingForm({
-  availableTimes,
-  dispatch,
-  submitForm,
-}) {
+export default function BookingForm({ availableTimes, dispatch, submitForm }) {
   const [date, setDate] = useState("");
   const [time, setTime] = useState(availableTimes?.[0] || "17:00");
   const [guests, setGuests] = useState(1);
@@ -37,61 +33,100 @@ export default function BookingForm({
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      style={{ display: "grid", maxWidth: 200, gap: 20 }}
-    >
-      <label htmlFor="res-date">Choose date</label>
-      <input
-        type="date"
-        id="res-date"
-        value={date}
-        onChange={handleDateChange}
-        required
-      />
+    <section className="booking-section" aria-labelledby="booking-title">
+      <div className="container">
+        <header className="booking-header">
+          <h1 id="booking-title" className="booking-title">
+            Reservations
+          </h1>
+          <p className="booking-subtitle">
+            Choose a date, time, and party size to reserve your table.
+          </p>
+        </header>
 
-      <label htmlFor="res-time">Choose time</label>
-      <select
-        id="res-time"
-        value={time}
-        onChange={(e) => setTime(e.target.value)}
-        required
-        disabled={!availableTimes || availableTimes.length === 0}
-      >
-        {(availableTimes || []).map((t) => (
-          <option key={t}>{t}</option>
-        ))}
-      </select>
+        <div className="booking-card">
+          <form className="booking-form" onSubmit={handleSubmit}>
+            <div className="form-field">
+              <label className="form-label" htmlFor="res-date">
+                Choose date
+              </label>
+              <input
+                className="form-input"
+                type="date"
+                id="res-date"
+                value={date}
+                onChange={handleDateChange}
+                required
+              />
+            </div>
 
-      <label htmlFor="guests">Number of guests</label>
-      <input
-        type="number"
-        id="guests"
-        min="1"
-        max="10"
-        value={guests}
-        onChange={(e) => setGuests(Number(e.target.value))}
-        required
-      />
+            <div className="form-field">
+              <label className="form-label" htmlFor="res-time">
+                Choose time
+              </label>
+              <select
+                className="form-select"
+                id="res-time"
+                value={time}
+                onChange={(e) => setTime(e.target.value)}
+                required
+                disabled={!availableTimes || availableTimes.length === 0}
+              >
+                {(availableTimes || []).map((t) => (
+                  <option key={t}>{t}</option>
+                ))}
+              </select>
+            </div>
 
-      <label htmlFor="occasion">Occasion</label>
-      <select
-        id="occasion"
-        value={occasion}
-        onChange={(e) => setOccasion(e.target.value)}
-        required
-      >
-        <option>Birthday</option>
-        <option>Engagement</option>
-        <option>Anniversary</option>
-      </select>
+            <div className="form-field">
+              <label className="form-label" htmlFor="guests">
+                Number of guests
+              </label>
+              <input
+                className="form-input"
+                type="number"
+                id="guests"
+                min="1"
+                max="10"
+                value={guests}
+                onChange={(e) => setGuests(Number(e.target.value))}
+                required
+              />
+            </div>
 
-      <input
-        type="submit"
-        value="Make Your Reservation"
-        disabled={!isFormValid}
-        aria-label="On Click"
-      />
-    </form>
+            <div className="form-field">
+              <label className="form-label" htmlFor="occasion">
+                Occasion
+              </label>
+              <select
+                className="form-select"
+                id="occasion"
+                value={occasion}
+                onChange={(e) => setOccasion(e.target.value)}
+                required
+              >
+                <option>Birthday</option>
+                <option>Engagement</option>
+                <option>Anniversary</option>
+              </select>
+            </div>
+
+            <div className="form-actions">
+              <input
+                className="btn btn-primary"
+                type="submit"
+                value="Make Your Reservation"
+                disabled={!isFormValid}
+                aria-label="On Click"
+              />
+            </div>
+
+            <p className="form-hint" aria-live="polite">
+              {!isFormValid ? "Please fill out all fields to continue." : ""}
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
   );
 }

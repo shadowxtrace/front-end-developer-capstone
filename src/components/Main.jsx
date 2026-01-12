@@ -10,7 +10,11 @@ import { initializeTimes, updateTimes } from "../utils/times";
 
 function Main() {
   const navigate = useNavigate();
-  const [availableTimes, dispatch] = useReducer(updateTimes, [], initializeTimes);
+  const [availableTimes, dispatch] = useReducer(
+    updateTimes,
+    [],
+    initializeTimes
+  );
 
   function submitForm(formData) {
     const ok = submitAPI(formData);
@@ -18,9 +22,10 @@ function Main() {
   }
 
   return (
-    <main className="main">
+    <main className="main-content">
       <Routes>
         <Route path="/" element={<HomePage />} />
+
         <Route
           path="/booking"
           element={
@@ -31,12 +36,14 @@ function Main() {
             />
           }
         />
+
         <Route path="/confirmed" element={<ConfirmedBooking />} />
 
-        <Route path="/about" element={<div>About</div>} />
-        <Route path="/menu" element={<div>Menu</div>} />
-        <Route path="/order" element={<div>Order Online</div>} />
-        <Route path="/login" element={<div>Login</div>} />
+        {/* Placeholder routes for navigation completeness */}
+        <Route path="/about" element={<div className="page-placeholder">About</div>} />
+        <Route path="/menu" element={<div className="page-placeholder">Menu</div>} />
+        <Route path="/order" element={<div className="page-placeholder">Order Online</div>} />
+        <Route path="/login" element={<div className="page-placeholder">Login</div>} />
       </Routes>
     </main>
   );

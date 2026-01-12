@@ -7,16 +7,23 @@ const testimonials = [
 
 function CustomersSay() {
   return (
-    <section>
-      <h2>Testimonials</h2>
-      <div>
-        {testimonials.map((t) => (
-          <article key={t.name}>
-            <p>{t.rating}</p>
-            <p><strong>{t.name}</strong></p>
-            <p>{t.review}</p>
-          </article>
-        ))}
+    <section className="testimonials" aria-labelledby="testimonials-title">
+      <div className="container">
+        <h2 id="testimonials-title" className="section-title">
+          Testimonials
+        </h2>
+
+        <div className="testimonials-grid">
+          {testimonials.map((t) => (
+            <article key={t.name} className="testimonial-card">
+              <p className="testimonial-rating">{t.rating}</p>
+              <p className="testimonial-name">
+                <strong>{t.name}</strong>
+              </p>
+              <p className="testimonial-review">{t.review}</p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );
